@@ -1,0 +1,29 @@
+name: Scan
+on:
+  workflow_dispatch  
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      # - name: Build
+      #   run: |
+      #     docker build -t scan .
+      # - name: Run Docker container
+      #   run: |
+      #     docker run -d -p  --name 01cloud-container ${{ secrets.DOCKER_REPOSITORY }}:${{ github.sha }}
+      
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/node@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}    
+        with:
+          command: monitor
+
+      # - name: ZAP Scan
+      #   uses: zaproxy/action-full-scan@v0.11.0
+      #   with:
+      #     target:
+
+      # - name: Cleanup
+      #   run: docker stop 01cloud-container && docker rm o1cloud-container
