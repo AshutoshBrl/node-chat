@@ -19,7 +19,7 @@ jobs:
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
-          command: monitor
+          command: test
         continue-on-error: true
 
       # Run Snyk on Docker image for vulnerabilities
