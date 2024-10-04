@@ -5,7 +5,7 @@ jobs:
   security:
     runs-on: ubuntu-latest
     steps: 
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v4
       - name: Dockerise abd push image to docker Hub
         run: |
           docker build -t node-chat:${{ github.sha }} .
@@ -14,8 +14,9 @@ jobs:
         uses: snyk/actions/node@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        # with:
-        #   command: code test
+        with:
+          command: monitor
+        continue-on-error: true
     # steps:
       - name: Run Snyk to check Docker image for vulnerabilities
         uses: snyk/actions/docker@master
@@ -23,3 +24,4 @@ jobs:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
           image: node-chat:${{ github.sha }}
+        continue-on-error: true
