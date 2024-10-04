@@ -17,6 +17,11 @@ jobs:
         with:
           command: monitor
         continue-on-error: true
+      - name: snyk monitor
+        run: snyk test
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        
     # steps:
       - name: Run Snyk to check Docker image for vulnerabilities
         uses: snyk/actions/docker@master
