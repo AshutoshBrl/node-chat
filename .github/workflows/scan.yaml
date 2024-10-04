@@ -22,12 +22,6 @@ jobs:
           command: monitor
         continue-on-error: true
 
-      # Run Snyk test on Node.js project
-      - name: Test Node.js Project with Snyk
-        run: test
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-
       # Run Snyk on Docker image for vulnerabilities
       - name: Check Docker Image for Vulnerabilities
         uses: snyk/actions/docker@master
