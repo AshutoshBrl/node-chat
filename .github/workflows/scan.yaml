@@ -24,9 +24,10 @@ jobs:
         
     # steps:
       - name: Run Snyk to check Docker image for vulnerabilities
+        continue-on-error: true
         uses: snyk/actions/docker@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
           image: node-chat:${{ github.sha }}
-        continue-on-error: true
+          args: --file=Dockerfile
