@@ -24,7 +24,7 @@ jobs:
 
       # Run Snyk test on Node.js project
       - name: Test Node.js Project with Snyk
-        run: snyk test
+        run: test
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
