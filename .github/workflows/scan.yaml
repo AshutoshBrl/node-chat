@@ -4,9 +4,20 @@ on:
 jobs:
   security:
     runs-on: ubuntu-latest
-    steps:
+    steps: 
       - uses: actions/checkout@master
+      - name: Dockerise abd push image to docker Hub
+        run: |
+          docker build -t node-chat:${{ github.sha }} .
+          
       - name: Run Snyk to check for vulnerabilities
         uses: snyk/actions/node@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+    # steps:
+      - name: Run Snyk to check Docker image for vulnerabilities
+        uses: snyk/actions/docker@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          image: node-chat:${{ github.sha }}
