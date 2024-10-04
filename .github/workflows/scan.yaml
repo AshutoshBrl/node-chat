@@ -29,5 +29,4 @@ jobs:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
           image: node-chat:${{ github.sha }}
-          options: --file=Dockerfile  # Corrected from args to options
         continue-on-error: true
