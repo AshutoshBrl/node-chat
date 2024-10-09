@@ -7,7 +7,7 @@ spec:
   - name: url
     type: string
     description: The URL of the Git repository to clone.
-    default: "https://github.com/umesh-khatiwada/drupal-test.git"
+    default: "https://github.com/AshutoshBrl/node-chat.git"
   - name: revision
     description: git revision to checkout (branch, tag, sha, ref…)
     type: string
